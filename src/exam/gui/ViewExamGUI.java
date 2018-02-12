@@ -1,0 +1,462 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package exam.gui;
+
+import java.awt.Color;
+import java.util.Calendar;
+import java.util.Date;
+
+/**
+ *
+ * @author jordancutler, Lizzie Litt
+ */
+public class ViewExamGUI extends javax.swing.JFrame {
+
+    static String[] months = {"January", "February", "March", "April", "May", "June", "July",
+        "August", "September", "October", "November", "December"};
+    static String[] amPM = {"AM", "PM"};
+    String building;
+    String examType;
+    String doctor;
+    String patient;
+    int roomNumber;
+    String status;
+    Date actualStart;
+    Date actualEnd;
+    Date plannedStart;
+    Date plannedEnd;
+    int examNumber;
+    /**
+     * Creates new form ViewExamGUI
+     */
+    public ViewExamGUI(String building, String examType, String doctor, String patient,
+            int roomNumber, String status, Date actualStartTime,
+            Date actualEndTime, Date plannedStartTime, Date plannedEndTime, int examNumber) {
+        initComponents();
+        this.getContentPane().setBackground(Color.pink);
+        this.building = building;
+        this.examType = examType;
+        this.doctor = doctor;
+        this.patient = patient;
+        this.roomNumber = roomNumber;
+        this.status = status;
+        this.actualStart = actualStartTime;
+        this.actualEnd = actualEndTime;
+        this.plannedStart = plannedStartTime;
+        this.plannedEnd = plannedEndTime;
+        this.examNumber = examNumber;
+        /*statusText.setText(status);
+        actualStartText.setText(actualStartTime.toString());
+        actualEndText.setText(actualEndTime.toString());
+        plannedStartText.setText(plannedStartTime.toString());
+        plannedEndText.setText(plannedEndTime.toString());
+        examNumberText.setText("" + examNumber);*/
+        displayFields();
+    }
+    
+    public void displayFields() {
+        buildingText.setText(building);
+        roomNumberText.setText("" + roomNumber);
+        statusText.setText(status);
+        examTypeText.setText(examType);
+        patientText.setText(patient);
+        doctorText.setText(doctor);
+        if (actualStart != null) {
+            Calendar actualStartCal = Calendar.getInstance();
+            actualStartCal.setTime(actualStart);
+            String actualStartMins = convertMinutesToString(actualStartCal.get(Calendar.MINUTE));
+            actualStartText.setText(months[actualStartCal.get(Calendar.MONTH)] + " " + actualStartCal.get(Calendar.DATE) + 
+                ", " + actualStartCal.get(Calendar.YEAR) + "| " + actualStartCal.get(Calendar.HOUR) + ":" + 
+                actualStartMins + " " + amPM[actualStartCal.get(Calendar.AM_PM)]);
+        }
+        else {
+            actualStartText.setText("Has not been set");
+        }
+        if (actualEnd != null) {  
+            Calendar actualEndCal = Calendar.getInstance();
+            actualEndCal.setTime(actualEnd);
+            String actualEndMins = convertMinutesToString(actualEndCal.get(Calendar.MINUTE));
+            actualEndText.setText(months[actualEndCal.get(Calendar.MONTH)] + " " + actualEndCal.get(Calendar.DATE) + 
+                ", " + actualEndCal.get(Calendar.YEAR) + "| " + actualEndCal.get(Calendar.HOUR) + ":" + 
+                actualEndMins + " " + amPM[actualEndCal.get(Calendar.AM_PM)]);
+        }
+        else {
+            actualEndText.setText("Has not been set");
+        }
+        Calendar plannedStartCal = Calendar.getInstance();
+        plannedStartCal.setTime(plannedStart);
+        Calendar plannedEndCal = Calendar.getInstance();
+        plannedEndCal.setTime(plannedEnd);
+        String plannedStartMins = convertMinutesToString(plannedStartCal.get(Calendar.MINUTE));
+        String plannedEndMins = convertMinutesToString(plannedEndCal.get(Calendar.MINUTE));
+ 
+        plannedStartText.setText(months[plannedStartCal.get(Calendar.MONTH)] + " " + plannedStartCal.get(Calendar.DATE) + 
+                ", " + plannedStartCal.get(Calendar.YEAR) + "| " + plannedStartCal.get(Calendar.HOUR) + ":" + 
+                plannedStartMins + " " + amPM[plannedStartCal.get(Calendar.AM_PM)]);
+        
+        plannedEndText.setText(months[plannedEndCal.get(Calendar.MONTH)] + " " + plannedEndCal.get(Calendar.DATE) + 
+                ", " + plannedEndCal.get(Calendar.YEAR) + "| " + plannedEndCal.get(Calendar.HOUR) + ":" + 
+                plannedEndMins + " " + amPM[plannedEndCal.get(Calendar.AM_PM)]);
+        examNumberText.setText("" + examNumber);
+    }
+    
+    public static String convertMinutesToString(int minutes) {
+        if (minutes == 0) {
+            return "00";
+        }
+        else {
+            return "" + minutes;
+        }
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        buildingLabel = new javax.swing.JLabel();
+        roomNumberLabel = new javax.swing.JLabel();
+        plannedStartTimeLabel = new javax.swing.JLabel();
+        actualEndTimeLabel = new javax.swing.JLabel();
+        actualStartTimeLabel = new javax.swing.JLabel();
+        plannedEndTimeLabel = new javax.swing.JLabel();
+        doctorLabel = new javax.swing.JLabel();
+        examTypeLabel = new javax.swing.JLabel();
+        examNumberLabel = new javax.swing.JLabel();
+        statusLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        doctorText = new javax.swing.JTextPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        buildingText = new javax.swing.JTextPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        roomNumberText = new javax.swing.JTextPane();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        statusText = new javax.swing.JTextPane();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        actualStartText = new javax.swing.JTextPane();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        actualEndText = new javax.swing.JTextPane();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        plannedEndText = new javax.swing.JTextPane();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        examTypeText = new javax.swing.JTextPane();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        plannedStartText = new javax.swing.JTextPane();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        examNumberText = new javax.swing.JTextPane();
+        patientLabel = new javax.swing.JLabel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        patientText = new javax.swing.JTextPane();
+        mainMenuButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 185, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 143, Short.MAX_VALUE)
+        );
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        buildingLabel.setText("Building");
+
+        roomNumberLabel.setText("Room Number");
+
+        plannedStartTimeLabel.setText("Planned Start Time");
+
+        actualEndTimeLabel.setText("Actual End Time");
+
+        actualStartTimeLabel.setText("Actual Start Time");
+
+        plannedEndTimeLabel.setText("Planned End Time");
+
+        doctorLabel.setText("Doctor Performing");
+
+        examTypeLabel.setText("Exam Type");
+
+        examNumberLabel.setText("Exam Number");
+
+        statusLabel.setText("Exam Status");
+
+        doctorText.setEditable(false);
+        doctorText.setSize(new java.awt.Dimension(18, 12));
+        jScrollPane1.setViewportView(doctorText);
+
+        buildingText.setEditable(false);
+        buildingText.setMaximumSize(new java.awt.Dimension(18, 12));
+        buildingText.setSize(new java.awt.Dimension(18, 12));
+        jScrollPane2.setViewportView(buildingText);
+
+        roomNumberText.setEditable(false);
+        roomNumberText.setMaximumSize(new java.awt.Dimension(18, 12));
+        roomNumberText.setSize(new java.awt.Dimension(18, 12));
+        jScrollPane3.setViewportView(roomNumberText);
+
+        statusText.setEditable(false);
+        statusText.setMaximumSize(new java.awt.Dimension(18, 12));
+        statusText.setSize(new java.awt.Dimension(18, 12));
+        jScrollPane4.setViewportView(statusText);
+
+        actualStartText.setEditable(false);
+        actualStartText.setMaximumSize(new java.awt.Dimension(18, 12));
+        actualStartText.setSize(new java.awt.Dimension(18, 12));
+        jScrollPane5.setViewportView(actualStartText);
+
+        actualEndText.setEditable(false);
+        actualEndText.setMaximumSize(new java.awt.Dimension(18, 12));
+        actualEndText.setSize(new java.awt.Dimension(18, 12));
+        jScrollPane6.setViewportView(actualEndText);
+
+        jScrollPane7.setMaximumSize(new java.awt.Dimension(18, 12));
+
+        plannedEndText.setEditable(false);
+        jScrollPane7.setViewportView(plannedEndText);
+
+        examTypeText.setEditable(false);
+        examTypeText.setMaximumSize(new java.awt.Dimension(18, 12));
+        examTypeText.setSize(new java.awt.Dimension(18, 12));
+        jScrollPane8.setViewportView(examTypeText);
+
+        plannedStartText.setEditable(false);
+        plannedStartText.setMaximumSize(new java.awt.Dimension(18, 12));
+        plannedStartText.setSize(new java.awt.Dimension(18, 12));
+        jScrollPane9.setViewportView(plannedStartText);
+
+        examNumberText.setEditable(false);
+        examNumberText.setMaximumSize(new java.awt.Dimension(18, 12));
+        examNumberText.setSize(new java.awt.Dimension(18, 12));
+        jScrollPane10.setViewportView(examNumberText);
+
+        patientLabel.setText("Patient Name");
+
+        patientText.setEditable(false);
+        jScrollPane11.setViewportView(patientText);
+
+        mainMenuButton.setText("Return to Main Menu");
+        mainMenuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainMenuButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exam/gui/logo small.png"))); // NOI18N
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(148, 148, 148)
+                                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(mainMenuButton))
+                                .addGap(76, 76, 76)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(statusLabel)
+                                    .addComponent(examTypeLabel)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(actualStartTimeLabel)
+                                            .addComponent(examNumberLabel)
+                                            .addComponent(buildingLabel))
+                                        .addGap(27, 27, 27))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(plannedStartTimeLabel)
+                                        .addGap(18, 18, 18)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(69, 69, 69)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(actualEndTimeLabel)
+                                    .addComponent(patientLabel)
+                                    .addComponent(roomNumberLabel)
+                                    .addComponent(plannedEndTimeLabel)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(doctorLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                            .addComponent(jScrollPane11)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(jLabel1)))
+                .addGap(42, 42, 42))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(mainMenuButton)
+                            .addComponent(statusLabel))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(examNumberLabel)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(examTypeLabel))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(patientLabel)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(doctorLabel))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(roomNumberLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(buildingLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(plannedStartTimeLabel))
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(actualStartTimeLabel)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(plannedEndTimeLabel))
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(actualEndTimeLabel))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        this.dispose();
+        MainGUI.makeGUIVisible();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void mainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuButtonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        MainGUI.makeGUIVisible();
+    }//GEN-LAST:event_mainMenuButtonActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(ViewExamGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ViewExamGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ViewExamGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ViewExamGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                //new ViewExamGUI().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextPane actualEndText;
+    private javax.swing.JLabel actualEndTimeLabel;
+    private javax.swing.JTextPane actualStartText;
+    private javax.swing.JLabel actualStartTimeLabel;
+    private javax.swing.JLabel buildingLabel;
+    private javax.swing.JTextPane buildingText;
+    private javax.swing.JLabel doctorLabel;
+    private javax.swing.JTextPane doctorText;
+    private javax.swing.JLabel examNumberLabel;
+    private javax.swing.JTextPane examNumberText;
+    private javax.swing.JLabel examTypeLabel;
+    private javax.swing.JTextPane examTypeText;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JButton mainMenuButton;
+    private javax.swing.JLabel patientLabel;
+    private javax.swing.JTextPane patientText;
+    private javax.swing.JTextPane plannedEndText;
+    private javax.swing.JLabel plannedEndTimeLabel;
+    private javax.swing.JTextPane plannedStartText;
+    private javax.swing.JLabel plannedStartTimeLabel;
+    private javax.swing.JLabel roomNumberLabel;
+    private javax.swing.JTextPane roomNumberText;
+    private javax.swing.JLabel statusLabel;
+    private javax.swing.JTextPane statusText;
+    // End of variables declaration//GEN-END:variables
+}
